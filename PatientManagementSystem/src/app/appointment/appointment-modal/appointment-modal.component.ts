@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { IAppointment } from 'src/app/interface';
 import { AppointmentService } from 'src/app/services/appointment.service';
@@ -17,7 +17,7 @@ export class AppointmentModalComponent implements OnInit {
     this.appointmentFormGroup = new FormGroup({
       AppointmentId: new FormControl('',Validators.required),
       PatientId: new FormControl('',Validators.required),
-      Date: new FormControl('',Validators.required),
+      Date: new FormControl('',[Validators.required,this.DateValidation]),
       StartTime: new FormControl('',Validators.required),
       EndTime: new FormControl('',Validators.required),
     });
@@ -34,9 +34,19 @@ export class AppointmentModalComponent implements OnInit {
     }
 
     this.appointment.addAppointment(appObject)
-    window.location.reload();
-
-
+  
   }
+
+  
+  DateValidation(control: AbstractControl): {[key:string]:any} | null{
+    const DateSelected:string = control.value
+    const selectedDate = new Date (DateSelected)
+    const currentDate=new Date()
+    if(currentDate>selectedDate){
+      return {'DOBInvalid':true};
+    }
+    return null;
+
+   }
 
 }

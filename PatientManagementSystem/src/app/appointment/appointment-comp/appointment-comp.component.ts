@@ -19,11 +19,6 @@ export class AppointmentCompComponent implements OnInit {
       this.appointment=response;
       console.log(response);
     })
-
-
-    
-
-
   }
   
 
@@ -33,10 +28,6 @@ export class AppointmentCompComponent implements OnInit {
 
   delete(appointmentId:number){
     this.Appointment.deleteAppointment(appointmentId)
-    window.location.reload();
-
+  
   }
-
-
-
 }

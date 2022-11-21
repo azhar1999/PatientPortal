@@ -19,12 +19,15 @@ export class AppointmentService {
 
   addAppointment(appObject:any){
     this.httpClient.post(this.addAppointmentURL,appObject,{responseType:"text"}).subscribe(response=>{
+      window.location.reload();
       
     }) 
   }
-
+  
+  //softDelete is implemented
   deleteAppointment(id:any){
     this.httpClient.put(`https://localhost:7005/Appointments/SoftDelete?appid=${id}`,id,{responseType:"text"}).subscribe(response=>{
+      window.location.reload();
       
     }) 
   }

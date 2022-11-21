@@ -28,7 +28,6 @@ export class HomeCompComponent implements OnInit {
   }
   delete(patientId:number){
     this.patient.deletePatient(patientId)
-    window.location.reload();
 
   }
 

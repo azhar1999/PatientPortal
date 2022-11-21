@@ -6,10 +6,15 @@
             <label>PatientId</label>
             <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="PatientId"><br>
             <label>Date</label>
+            (Enter YYYY-MM-DD Format)
             <input class="inputDate" formControlName="Date" placeholder="Date" type="text"><br>
+            <div class="DateError" *ngIf="appointmentFormGroup.controls['Date'].invalid">Invalid Date</div>
+    
             <label>StartTime</label>
+            (Enter HH-MM-SS Format)
             <input class="inputStartTime" formControlName="StartTime" placeholder="StartTime" type="text"><br>
             <label>Endtime</label>
+            (Enter HH-MM-SS Format)
             <input class="inputEndTime" formControlName="EndTime" placeholder="EndTime" type="text"><br>
             <div class="button">
                 <div class="cancelbutton">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { IPatient } from 'src/app/interface';
 import { PatientService } from 'src/app/services/patient.service';
@@ -13,6 +13,13 @@ export class PatientModalComponent implements OnInit {
 
   patientFormGroup!:FormGroup;
 
+  ValidationMessages ={
+    'DOB':{
+      'DOBValidation':'DOB not valid'
+    }
+
+  }
+
   constructor(public PatientModal:MatDialog,private patient:PatientService) { }
 
   ngOnInit(): void {
@@ -20,7 +27,7 @@ export class PatientModalComponent implements OnInit {
       PatientId: new FormControl('',Validators.required),
       FirstName: new FormControl('',Validators.required),
       LastName: new FormControl('',Validators.required),
-      DOB: new FormControl('',Validators.required),
+      DOB: new FormControl('',[Validators.required,this.DOBValidation]),
       email: new FormControl('',Validators.required),
       SSN: new FormControl('',Validators.required)
     });
@@ -36,9 +43,27 @@ export class PatientModalComponent implements OnInit {
       isDelete:'false'
     }
     this.PatientModal.closeAll()
+    
+    
+    
     this.patient.addPatient(patObject)
+    
  
   }
+
+  DOBValidation(control: AbstractControl): {[key:string]:any} | null{
+    const DOB:string = control.value
+    const datedob = new Date(DOB)
+    const start1=new Date()
+    if(datedob>start1){
+      return {'DOBInvalid':true};
+    }
+    return null;
+
+   }
+
+
+ 
 
 
 }

@@ -42,3 +42,7 @@ input[type=submit]:hover {
     margin-left:10px;
 
   }
+
+  .DateError{
+    color:red;
+  }

@@ -36,8 +36,12 @@ input[type=text],[type=number] {
 input[type=submit]:hover {
     background-color: #45a049;
   }
-  
+
   .Add{
     margin-left:10px;
 
+  }
+
+  .DOBError{
+    color:red;
   }

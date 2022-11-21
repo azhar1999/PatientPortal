@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PatientService {
   getPatientURL:string="https://localhost:7005/Patients";
-  addPatientURL:string="https://localhost:7005/Patients";
+  addPatientURL:string="https://localhost:7005/Patients/details";
   deletePatientURL:string ="https://localhost:7005/Patients/SoftDelete";
 
   constructor(private httpClient:HttpClient) { }
@@ -19,22 +19,22 @@ export class PatientService {
   }
 
   addPatient(patObject:any){
-  
-    this.httpClient.post("https://localhost:7005/Patients/details",patObject,{responseType:"text"}).subscribe(response=>{
+    this.httpClient.post(this.addPatientURL,patObject,{responseType:"text"}).subscribe(response=>{
       console.log(response);
       window.location.reload();
       
     })
   }
 
-  
+  //softDelete is implemented
   deletePatient(patId:number){
-  
-    
     this.httpClient.put(  `https://localhost:7005/Patients/SoftDelete?patid=${patId}`,{ patId },{responseType:"text"}).subscribe(response=>{
       console.log(response);
+      window.location.reload();
       
     })
+
+    
  
   }
 
