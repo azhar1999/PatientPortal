@@ -1,0 +1,26 @@
+<div class="CreatePatient">
+    <form class="form" [formGroup]="patientFormGroup" (ngSubmit)="submit()">
+        <div class="container">
+            <label>PatientId</label>
+            <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="Id"><br>
+            <label>FirstName</label>
+            <input class="inputFirstName" formControlName="FirstName" placeholder="FirstName" type="text"><br>
+            <label>LastName</label>
+            <input class="inputLastName" formControlName="LastName" placeholder="LastName" type="text"><br>
+            <label>DOB</label>
+            <input class="inputDOB" formControlName="DOB" placeholder="DOB" type="date"><br>
+            <label>email</label>
+            <input class="inputemail" formControlName="email" placeholder="email" type="text"><br>
+            <label>SSN</label>
+            <input class="inputSSN" formControlName="SSN" placeholder="SSN" type="text"><br>
+            <div class="button">
+                <div class="cancelbutton">
+                    <button class="cancel">Cancel</button>
+                </div>
+                <div class="Add">
+                    <input type="submit" value="Add Patient">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
