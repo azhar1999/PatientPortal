@@ -4,15 +4,19 @@ export interface IPatient{
     PatientId:number,
     FirstName:string,
     LastName:string,
-    DOB:Date,
+    DOB:string,
     email:string,
-    SSN:string
+    SSN:string,
+    isDelete:string
 }
 
 export interface IAppointment{
+    appointmentId:number
     PatientId:number,
-    StartTime:Time,
-    EndTime:Time
+    Date:string,
+    StartTime:string,
+    EndTime:string,
+    isDelete:string
    
 }
 

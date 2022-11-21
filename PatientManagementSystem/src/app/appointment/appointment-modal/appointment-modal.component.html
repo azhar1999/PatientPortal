@@ -1,12 +1,16 @@
 <div class="CreateAppointment">
     <form class="form" [formGroup]="appointmentFormGroup" (ngSubmit)="submit()">
         <div class="container">
+            <label>AppointmentId</label>
+            <input type="number" class="inputAppointmentId" formControlName="AppointmentId" placeholder="AppointmentId"><br>
             <label>PatientId</label>
-            <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="Id"><br>
+            <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="PatientId"><br>
+            <label>Date</label>
+            <input class="inputDate" formControlName="Date" placeholder="Date" type="text"><br>
             <label>StartTime</label>
-            <input class="inputStartTime" formControlName="StartTime" placeholder="StartTime" type="time"><br>
+            <input class="inputStartTime" formControlName="StartTime" placeholder="StartTime" type="text"><br>
             <label>Endtime</label>
-            <input class="inputEndTime" formControlName="EndTime" placeholder="EndTime" type="time"><br>
+            <input class="inputEndTime" formControlName="EndTime" placeholder="EndTime" type="text"><br>
             <div class="button">
                 <div class="cancelbutton">
                     <button class="cancel">Cancel</button>

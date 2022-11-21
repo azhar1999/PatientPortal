@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { PatientService } from 'src/app/services/patient.service';
 import { PatientModalComponent } from '../patient-modal/patient-modal.component';
 
 
@@ -10,12 +11,25 @@ import { PatientModalComponent } from '../patient-modal/patient-modal.component'
 })
 export class HomeCompComponent implements OnInit {
 
-  constructor(public PatientModal:MatDialog) { }
+  currPatient!:any;
+
+  constructor(public PatientModal:MatDialog,private patient: PatientService) { }
 
   ngOnInit(): void {
+    this.patient.getAllPatient().subscribe((response)=>{
+      this.currPatient=response;
+      
+    })
+
   }
   openPatientModal(){
-    this.PatientModal.open(PatientModalComponent)
+    this.PatientModal.open(PatientModalComponent);
+   
+  }
+  delete(patientId:number){
+    this.patient.deletePatient(patientId)
+    window.location.reload();
+
   }
 
 }

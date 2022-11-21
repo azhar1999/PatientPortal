@@ -1,4 +1,18 @@
-<div class="addButton">
-    <button class="Add" (click)="openPatientModal()">Add Patient</button>
-</div>
+<div>
+    <div class="addButton">
+        <button class="Add" (click)="openPatientModal()">Add Patient</button>
+    </div>
+    <div class="row" *ngIf="currPatient!=null">
+        <div class="col-4 display" *ngFor="let patient of currPatient">
+            <div class="card" *ngIf="patient.isDelete!='true'">
+                <div class="cardcontent" id="cardtitle">patientId:{{patient.patientId}}</div><br>
+                <div class="cardcontent" id="cardname">firstName:{{patient.firstName}}</div><br>
+                <div class="cardcontent" id="cardname">lastname:{{patient.lastName}}</div><br>
+                <div class="cardcontent" id="cardname">dob:{{patient.dob}}</div><br>
+                <div class="cardcontent" id="cardname">ssn:{{patient.ssn}}</div>
+                <button class="delete" (click)="delete(patient.patientId)">Delete</button>
 
+            </div>
+        </div>
+    </div>
+</div>
