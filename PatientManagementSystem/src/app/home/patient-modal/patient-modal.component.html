@@ -1,28 +1,42 @@
 <div class="CreatePatient">
     <form class="form" [formGroup]="patientFormGroup" (ngSubmit)="submit()">
         <div class="container">
-            <label>PatientId</label>
-            <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="Id"><br>
+
+
             <label>FirstName</label>
             <input class="inputFirstName" formControlName="FirstName" placeholder="FirstName" type="text"><br>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['FirstName'].invalid">First Name is
+                required</div>
+
+
             <label>LastName</label>
             <input class="inputLastName" formControlName="LastName" placeholder="LastName" type="text"><br>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['LastName'].invalid">Last Name is
+                required</div>
+
+
 
             <label>DOB</label>
             (Enter YYYY-MM-DD Format)
-            <input class="inputDOB" formControlName="DOB" placeholder="DOB" type="text"><br>
-            <div class="DOBError" *ngIf="patientFormGroup.controls['DOB'].invalid">InvalidDOB</div>
+            <input class="inputDOB" formControlName="DOB" placeholder="DOB" type="date"><br>
+
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['DOB'].invalid">Invalid DOB</div>
 
 
             <label>email</label>
             <input class="inputemail" formControlName="email" placeholder="email" type="text"><br>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['email'].invalid">Enter Valid Email
+            </div>
+
             <label>SSN</label>
             <input class="inputSSN" formControlName="SSN" placeholder="SSN" type="text"><br>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['SSN'].invalid">SSN required</div>
+
             <div class="button">
-                <div class="cancelbutton">
+                <div class="cancelbutton" (click)="close()">
                     <button class="cancel">Cancel</button>
                 </div>
-                <div class="Add">
+                <div class="AddButton">
                     <input type="submit" value="Add Patient">
                 </div>
             </div>

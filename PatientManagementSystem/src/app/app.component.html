@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	
+
 	<style>
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #333;
-	}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+		}
 
-	li {
-		float: left;
-	}
+		li {
+			float: left;
+		}
 
-	li a {
-		display: block;
-		color: white;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
 
-	li a:hover {
-		background-color: #04aa6d;
-	}
+		li a:hover {
+			background-color: #04aa6d;
+		}
 
-	.active {
+		.active {
 
-		background-color: #333;
-    
-	}
+			background-color: #333;
+
+		}
 	</style>
 </head>
+
 <body>
 	<ul>
-	<li><a class="PatientPortal" href="" routerLink="/">PatientPortal</a></li>
-	<li><a class="Appointment" href="#login" routerLink="/Appointment">Appointment</a></li>
+		<li><a class="PatientPortal" href="" routerLink="/">PatientPortal</a></li>
+		<li><a class="Appointment" href="#login" routerLink="/Appointment">Appointment</a></li>
 
 	</ul>
 	<div style="text-align: center; font-weight: bolder; font-size: 50px">
-	<router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 	</div>
-</body>   
+</body>
+
 </html>

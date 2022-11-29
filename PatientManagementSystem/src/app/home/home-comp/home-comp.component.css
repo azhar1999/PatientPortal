@@ -2,25 +2,34 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       /* this adds the "card" effect */
-      font-size:25px;
+      font-size:15px;
       margin-top: 10px;
       border-radius: 10px;
       margin-right: 25px;
-      background-color:#0077b6;
+      background-color:#d2ebf8;
       margin-bottom:25px;
-      transition: 0.5s ease-in-out;
+      transition: 0.2s ease-in-out;
       align-self: normal;
-      width: 300px;
-      height:270px;
+      width: 250px;
+      height:250px;
       padding: 10px;
       cursor: pointer;
       margin-left:10px;
     
     }
 
+      
+
+.row{
+  margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+  
+}
     
 .card:hover{
-  transform: translateY(-20px);
+  width: 270px;
+      height:270px;
   }
 
   button { 
@@ -44,17 +53,21 @@
     border: 2px solid #4CAF50;
   }
 .Add:hover {
-    background-color: #4CAF50;
+  background-color: #81da84;
     color: white;
   }
 
   .delete {
+    margin-top: 18px;
+    text-align: auto;
+    border-radius: 7px;
+
     background-color: white; 
     color: black; 
-    border: 2px solid #4CAF50;
+    border: 2px solid #010101;
   }
 .delete:hover {
-    background-color: #4CAF50;
+  background-color: #81da84;
     color: white;
   }
 

@@ -1,23 +1,26 @@
 <div class="CreateAppointment">
     <form class="form" [formGroup]="appointmentFormGroup" (ngSubmit)="submit()">
         <div class="container">
-            <label>AppointmentId</label>
-            <input type="number" class="inputAppointmentId" formControlName="AppointmentId" placeholder="AppointmentId"><br>
+
+
             <label>PatientId</label>
             <input type="number" class="inputPatientId" formControlName="PatientId" placeholder="PatientId"><br>
+            <div class="Error" *ngIf="formSubmit==true && appointmentFormGroup.get('PatientId')?.hasError('required')">
+                Patient Id Requires</div>
             <label>Date</label>
             (Enter YYYY-MM-DD Format)
-            <input class="inputDate" formControlName="Date" placeholder="Date" type="text"><br>
-            <div class="DateError" *ngIf="appointmentFormGroup.controls['Date'].invalid">Invalid Date</div>
-    
+            <input class="inputDate" formControlName="Date" placeholder="Date" type="date"><br>
+            <div class="Error" *ngIf="formSubmit==true && appointmentFormGroup.get('Date')?.hasError('required')">Date
+                Required</div>
             <label>StartTime</label>
+
             (Enter HH-MM-SS Format)
-            <input class="inputStartTime" formControlName="StartTime" placeholder="StartTime" type="text"><br>
+            <input class="inputStartTime" formControlName="StartTime" placeholder="StartTime" type="time"><br>
             <label>Endtime</label>
             (Enter HH-MM-SS Format)
-            <input class="inputEndTime" formControlName="EndTime" placeholder="EndTime" type="text"><br>
+            <input class="inputEndTime" formControlName="EndTime" placeholder="EndTime" type="time"><br>
             <div class="button">
-                <div class="cancelbutton">
+                <div class="cancelbutton" (click)="close()">
                     <button class="cancel">Cancel</button>
                 </div>
                 <div class="Add">

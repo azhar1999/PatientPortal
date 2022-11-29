@@ -2,16 +2,20 @@
     <div class="addButton">
         <button class="Add" (click)="openAppointmentModal()">Add Appointment</button>
     </div>
-    <div class="row" *ngIf="appointment!=null ">
-        <div class="col-4 display" *ngFor="let app of appointment">
-            <div class="card"*ngIf="app.isDelete!='true' ">
-                <div class="cardcontent" id="cardtitle">patientID={{app.patientId}}</div><br>
-                <div class="cardcontent" id="cardtitle">Date={{app.date}}</div><br>
-                <div class="cardcontent" id="cardname">startTime={{app.startTime}}</div><br>
-                <div class="cardcontent" id="cardname">endTime={{app.endTime}}</div>
+    <div class="row" *ngIf="appointmentList!=null ">
+        <div class="col-4 display"
+            *ngFor="let app of appointmentList|paginate : {itemsPerPage:pageSize,currentPage:page,totalItems:count}">
+            <div class="card">
+                <div class="cardcontent" id="cardtitle">AppointmentID:{{app.appointmentId}}</div><br>
+                <div class="cardcontent" id="cardtitle">PatientID:{{app.patientId}}</div><br>
+                <div class="cardcontent" id="cardtitle">Date:{{app.date}}</div><br>
+                <div class="cardcontent" id="cardname">startTime:{{app.startTime}}</div><br>
+                <div class="cardcontent" id="cardname">endTime:{{app.endTime}}</div>
                 <button class="delete" (click)="delete(app.appointmentId)">Delete</button>
 
             </div>
         </div>
     </div>
 </div>
+<pagination-controls (pageChange)="onPageDataChange($event)" class="float-right">
+</pagination-controls>

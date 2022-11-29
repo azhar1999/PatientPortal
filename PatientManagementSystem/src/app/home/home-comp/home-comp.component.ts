@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 import { PatientService } from 'src/app/services/patient.service';
 import { PatientModalComponent } from '../patient-modal/patient-modal.component';
 
@@ -11,24 +11,59 @@ import { PatientModalComponent } from '../patient-modal/patient-modal.component'
 })
 export class HomeCompComponent implements OnInit {
 
-  currPatient!:any;
+  patientList!: any;
+  page: number = 1;
+  count: any = 0;
+  pageSize: number = 4;
 
-  constructor(public PatientModal:MatDialog,private patient: PatientService) { }
+
+  constructor(public PatientModal: MatDialog, private patient: PatientService) { }
 
   ngOnInit(): void {
-    this.patient.getAllPatient().subscribe((response)=>{
-      this.currPatient=response;
-      
+
+    this.patient.getPatientCount().subscribe(response => {
+      this.count = response;
+      this.pageNumberMethod(this.count, this.page)
     })
-
+    this.getPatientList(this.page);
   }
-  openPatientModal(){
+  getPatientList(page: number) {
+    this.patient.getAllPatient(page, this.pageSize).subscribe((response) => {
+      this.patientList = response;
+    })
+  }
+
+  onPageDataChange(event: any) {
+    if (event < 1) {
+      console.log(event);
+      return null
+    }
+    else {
+      console.log(event);
+      this.getPatientList(event);
+      return true;
+    }
+  }
+
+
+  openPatientModal() {
     this.PatientModal.open(PatientModalComponent);
-   
-  }
-  delete(patientId:number){
-    this.patient.deletePatient(patientId)
 
   }
+
+  delete(patientId: number) {
+    this.patient.deletePatient(patientId)
+  }
+
+  pageNumberMethod(count: number, pagenumber: number) {
+    if ((count - (pagenumber * this.pageSize)) > 0) {
+      return true;
+    }
+
+    else {
+      return false;
+    }
+  }
+
 
 }

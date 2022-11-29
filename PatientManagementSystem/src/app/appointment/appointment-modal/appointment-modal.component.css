@@ -1,4 +1,4 @@
-input[type=text],[type=number] {
+input[type=text],[type=number],[type=date],[type=time] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -43,6 +43,6 @@ input[type=submit]:hover {
 
   }
 
-  .DateError{
+  .Error{
     color:red;
   }

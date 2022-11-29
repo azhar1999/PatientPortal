@@ -1,4 +1,4 @@
-input[type=text],[type=number] {
+input[type=text],[type=number],[type=date] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -37,11 +37,11 @@ input[type=submit]:hover {
     background-color: #45a049;
   }
 
-  .Add{
+  .AddButton{
     margin-left:10px;
 
   }
 
-  .DOBError{
+  .Error{
     color:red;
   }
