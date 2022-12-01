@@ -5,14 +5,19 @@
 
             <label>FirstName</label>
             <input class="inputFirstName" formControlName="FirstName" placeholder="FirstName" type="text"><br>
-            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['FirstName'].invalid">First Name is
-                required</div>
+
+                <div class="Error" *ngIf="formSubmit==true && patientFormGroup.get('FirstName')?.hasError('required')">
+                    First Name is required</div>
+                <div class="Error" *ngIf="formSubmit==true && patientFormGroup.get('FirstName')?.hasError('nameInvalid')">
+                    First Name should only contains letters and white spaces</div>
 
 
             <label>LastName</label>
             <input class="inputLastName" formControlName="LastName" placeholder="LastName" type="text"><br>
-            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['LastName'].invalid">Last Name is
-                required</div>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.get('LastName')?.hasError('required')">
+                Last Name is required</div>
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.get('LastName')?.hasError('nameInvalid')">
+                Last Name should only contains letters and white spaces</div>
 
 
 
@@ -30,7 +35,11 @@
 
             <label>SSN</label>
             <input class="inputSSN" formControlName="SSN" placeholder="SSN" type="text"><br>
-            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['SSN'].invalid">SSN required</div>
+
+                        
+            <div class="Error" *ngIf="formSubmit==true && patientFormGroup.controls['SSN'].invalid">invalid SSN</div>
+   
+
 
             <div class="button">
                 <div class="cancelbutton" (click)="close()">

@@ -13,43 +13,63 @@ export class AppointmentCompComponent implements OnInit {
   appointmentList!: any;
   page: number = 1;
   count: number = 0;
-  pageSize: number = 4;
+  pageSize: number = 6;
 
   constructor(public AppointmentModal: MatDialog, private Appointment: AppointmentService) { }
 
   ngOnInit(): void {
 
     this.Appointment.getAppointmentCount().subscribe((response: any) => {
-
+      
       this.count = response
+
     })
     this.getAppointmentList(this.page);
 
   }
 
-  getAppointmentList(page: number) {
 
+  //get appointmetList based on page number and page size
+  getAppointmentList(page: number) {
     this.Appointment.getAllAppointments(page, this.pageSize).subscribe((response: any) => {
       this.appointmentList = response;
-      console.log(response);
-      localStorage.setItem('patientList', JSON.stringify(this.appointmentList));
-
     })
   }
 
+  //to change page datas 
+  // onPageDataChange(event: any) {
+  //   this.page = event;
+  //   this.getAppointmentList(this.page);
+  // }
 
-  onPageDataChange(event: any) {
-    this.page = event;
-    this.getAppointmentList(this.page);
-  }
-
+  //to open modal
   openAppointmentModal() {
     this.AppointmentModal.open(AppointmentModalComponent)
   }
 
+  //to delete appointment
   delete(appointmentId: number) {
     this.Appointment.deleteAppointment(appointmentId)
+  }
 
+
+  //countMethod to return next page is needed
+  countMethod(page: any) {
+    if (page < 1) {
+      return false
+    }
+    if ((this.count - (page * this.pageSize)) > 0) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  //to change page datas 
+  onPageClick(event: any) {
+    this.page = event;
+    this.getAppointmentList(this.page);
   }
 
 }

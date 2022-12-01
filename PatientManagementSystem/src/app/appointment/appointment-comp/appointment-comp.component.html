@@ -1,21 +1,39 @@
-<div>
+<div class="page">
     <div class="addButton">
         <button class="Add" (click)="openAppointmentModal()">Add Appointment</button>
     </div>
-    <div class="row" *ngIf="appointmentList!=null ">
+    <div class="cardClass" *ngIf="appointmentList!=null ">
         <div class="col-4 display"
-            *ngFor="let app of appointmentList|paginate : {itemsPerPage:pageSize,currentPage:page,totalItems:count}">
+            *ngFor="let app of appointmentList">
             <div class="card">
                 <div class="cardcontent" id="cardtitle">AppointmentID:{{app.appointmentId}}</div><br>
                 <div class="cardcontent" id="cardtitle">PatientID:{{app.patientId}}</div><br>
                 <div class="cardcontent" id="cardtitle">Date:{{app.date}}</div><br>
                 <div class="cardcontent" id="cardname">startTime:{{app.startTime}}</div><br>
                 <div class="cardcontent" id="cardname">endTime:{{app.endTime}}</div>
-                <button class="delete" (click)="delete(app.appointmentId)">Delete</button>
+                <button class="delete" (click)="delete(app.appointmentId)">Cancel</button>
 
             </div>
         </div>
     </div>
 </div>
-<pagination-controls (pageChange)="onPageDataChange($event)" class="float-right">
-</pagination-controls>
+<!-- <pagination-controls (pageChange)="onPageDataChange($event)" class="float-right">
+</pagination-controls> -->
+
+<div class="paginationButtons">
+    <div class="previousButtonDiv" *ngIf="countMethod(page-1)">
+        <button class="previousButton" (click)="onPageClick(page-1)">prev</button>
+    </div>
+    <div class="previousPage" *ngIf="countMethod(page-1)">
+        <button class="previousPageNumber" (click)="onPageClick(page-1)">{{page-1}}</button>
+    </div>
+    <div class="currentPage">
+        <button class="currentPageNumber" (click)="onPageClick(page)">{{page}}</button>
+    </div>
+    <div class="nextPage" *ngIf="countMethod(page)">
+        <button class="nextPageNumber" (click)="onPageClick(page+1)">{{page+1}}</button>
+    </div>
+    <div class="nextButton" *ngIf="countMethod(page)">
+        <button class="nextPageButton" (click)="onPageClick(page+1)">next</button>
+    </div>
+</div>

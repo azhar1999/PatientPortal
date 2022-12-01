@@ -14,7 +14,7 @@ export class HomeCompComponent implements OnInit {
   patientList!: any;
   page: number = 1;
   count: any = 0;
-  pageSize: number = 4;
+  pageSize: number = 6;
 
 
   constructor(public PatientModal: MatDialog, private patient: PatientService) { }
@@ -23,7 +23,6 @@ export class HomeCompComponent implements OnInit {
 
     this.patient.getPatientCount().subscribe(response => {
       this.count = response;
-      this.pageNumberMethod(this.count, this.page)
     })
     this.getPatientList(this.page);
   }
@@ -32,17 +31,10 @@ export class HomeCompComponent implements OnInit {
       this.patientList = response;
     })
   }
-
+  
   onPageDataChange(event: any) {
-    if (event < 1) {
-      console.log(event);
-      return null
-    }
-    else {
-      console.log(event);
-      this.getPatientList(event);
-      return true;
-    }
+    this.page = event;
+    this.getPatientList(this.page);
   }
 
 
@@ -55,13 +47,23 @@ export class HomeCompComponent implements OnInit {
     this.patient.deletePatient(patientId)
   }
 
-  pageNumberMethod(count: number, pagenumber: number) {
-    if ((count - (pagenumber * this.pageSize)) > 0) {
-      return true;
-    }
 
-    else {
-      return false;
+  onPageClick(event: any) {
+    console.log(event);
+    
+    this.page = event;
+    this.getPatientList(this.page);
+  }
+  countMethod(page:any){
+    
+    if(page<1){
+      return false
+    }
+    if((this.count-(page*this.pageSize))>0){
+      return true
+    }
+    else{
+      return false
     }
   }
 

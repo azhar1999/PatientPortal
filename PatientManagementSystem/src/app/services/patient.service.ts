@@ -17,7 +17,7 @@ export class PatientService {
 
 
   getAllPatient(page: number, pageSize: number): Observable<IPatient> {
-    return this.httpClient.get<IPatient>(`${this.getPatientURL}/` + `${pageSize}` + `&${page}`)
+    return this.httpClient.get<IPatient>(`${this.getPatientURL}?pageSize=` + `${pageSize}` + `&pageNumber=${page}`)
   }
 
   addPatient(patObject: any) {

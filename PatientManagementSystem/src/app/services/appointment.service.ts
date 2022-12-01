@@ -17,7 +17,7 @@ export class AppointmentService {
 
   getAllAppointments(page: number, pageSize: number): Observable<IAppointment> {
 
-    return this.httpClient.get<IAppointment>(`${this.getAppointmentURL}/` + `${pageSize}` + `&${page}`)
+    return this.httpClient.get<IAppointment>(`${this.getAppointmentURL}?PageSize=${pageSize}&pageNumber=${page}`)
   }
 
   addAppointment(appObject: any) {

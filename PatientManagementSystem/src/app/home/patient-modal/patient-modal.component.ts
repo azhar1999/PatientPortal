@@ -25,11 +25,11 @@ export class PatientModalComponent implements OnInit {
   ngOnInit(): void {
     this.patientFormGroup = new FormGroup({
 
-      FirstName: new FormControl('', Validators.required),
-      LastName: new FormControl('', Validators.required),
-      DOB: new FormControl('', [Validators.required, this.DOBValidation]),
+      FirstName: new FormControl('',[ Validators.required,this.firstnameValidation]),
+      LastName: new FormControl('', [Validators.required,this.lastnameValidation]),
+      DOB: new FormControl('', [Validators.required, this.dobValidation]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      SSN: new FormControl('', Validators.required)
+      SSN: new FormControl('',[Validators.minLength(9),Validators.maxLength(9), Validators.required])
     });
   }
   submit() {
@@ -63,7 +63,7 @@ export class PatientModalComponent implements OnInit {
 
   }
 
-  DOBValidation(control: AbstractControl): { [key: string]: any } | null {
+  dobValidation(control: AbstractControl): { [key: string]: any } | null {
     const DOB: any = control.value
     const currentDate = new Date()
     if (DOB > currentDate) {
@@ -72,8 +72,31 @@ export class PatientModalComponent implements OnInit {
     return null;
   }
 
+  
+  firstnameValidation(control: AbstractControl): { [key: string]: any } | null {
+    const name: any = control.value
+    if( /^[A-Za-z ]+$/.test(name)){
+      return null;
 
+    }
+    else{
+      return { 'nameInvalid': true }
 
+    }
+  }
 
+  lastnameValidation(control: AbstractControl): { [key: string]: any } | null {
+    const name: any = control.value
+    if( /^[A-Za-z ]+$/.test(name)){
+      return null;
+
+    }
+    else{
+      return { 'nameInvalid': true }
+
+    }
+  }
 
 }
+
+
